@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+tar xvf H-300el-nopseudo.tar.gz
+tar xvf H-686el-nopseudo.tar.gz
+tar xvf P-1280el-pseudo.tar.gz
