@@ -1,0 +1,6 @@
+spackme
+
+spaktivate super_environment
+EXEPATH=/home/user/bin/turborvb-mpi.x
+
+python3 -c computer -s superstack -m "mpirun -np 16" -e $EXEPATH H-300el-nopseudo
