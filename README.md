@@ -2,6 +2,12 @@
 
 This repository contains the benchmarks for the Quantum Monte Carlo code TurboRVB. The benchmarks are used to measure the performance of TurboRVB on various workloads.
 
+It is better not to clone the whole repository if not necessary:
+
+```
+git clone --depth 1 https://github.com/addman2/turborvb_benchmarks.git
+```
+
 ## Workloads
 
 The workloads used in the benchmarks are stored in the Workloads directory. Each workload is a tar.gz archive. The workloads are used to test the performance of TurboRVB on different types of calculations.
