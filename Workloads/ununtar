@@ -1,9 +1,19 @@
 #!/usr/bin/env bash
 
-tar czf H-300el-nopseudo.tar.gz H-300el-nopseudo
-tar czf H-686el-nopseudo.tar.gz H-686el-nopseudo
-tar czf P-1280el-pseudo.tar.gz P-1280el-pseudo
+./H-300el-nopseudo-pbc/clean
+./H-686el-nopseudo-pbc/clean
+./H-1024el-nopseudo-pbc/clean
+./P-1280el-pseudo-pbc/clean
+./CuO-26el-pseudo-open/clean
 
-rm -rf H-300el-nopseudo
-rm -rf H-686el-nopseudo
-rm -rf P-1280el-pseudo
+tar czf H-300el-nopseudo-pbc.tar.gz H-300el-nopseudo-pbc
+tar czf H-686el-nopseudo-pbc.tar.gz H-686el-nopseudo-pbc
+tar czf H-1024el-nopseudo-pbc.tar.gz H-1024el-nopseudo-pbc
+tar czf P-1280el-pseudo-pbc.tar.gz P-1280el-pseudo-pbc
+tar czf CuO-26el-pseudo-open.tar.gz CuO-26el-pseudo-open
+
+#rm -rf H-300el-nopseudo-pbc
+#rm -rf H-686el-nopseudo-pbc
+#rm -rf H-1024-nopseudo-pbc
+#rm -rf P-1280el-pseudo-pbc
+#rm -rf CuO-26el-pbc-open
