@@ -14,6 +14,6 @@ tar czf CuO-26el-pseudo-open.tar.gz CuO-26el-pseudo-open
 
 rm -rf H-300el-nopseudo-pbc
 rm -rf H-686el-nopseudo-pbc
-rm -rf H-1024-nopseudo-pbc
+rm -rf H-1024el-nopseudo-pbc
 rm -rf P-1280el-pseudo-pbc
-rm -rf CuO-26el-pbc-open
+rm -rf CuO-26el-pseudo-open
