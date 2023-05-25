@@ -1,0 +1,8 @@
+{ "computers": [ { "name": "Bobor",
+	           "cpu": "ryzen 7 2700X",
+		   "gpu": "rtx 2060 12GB",
+		   "ram": "32GB" },
+	         { "name": "Veverica",
+		   "cpu": "i5-6500",
+		   "ram": "16GB" } ]
+}
