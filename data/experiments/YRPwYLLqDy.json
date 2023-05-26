@@ -1,0 +1,31 @@
+{
+    "computer": {
+        "name": "Bobor",
+        "cpu": "ryzen 7 2700X",
+        "gpu": "rtx 2060 12GB",
+        "ram": "32GB"
+    },
+    "time": "14:51:04_25-05-2023",
+    "user": "okohulak",
+    "workload": "CuO-26el-pseudo-open",
+    "softwarestack": {
+        "name": "GNU_13_1-mkl-openmpi",
+        "computer": "Bobor",
+        "compiler": "gcc@13.1",
+        "blas": "mkl@2023.1",
+        "lapack": "mkl@2023.1",
+        "scalapack": "mkl@2023.1",
+        "mpi": "openmpi@4.1.3"
+    },
+    "results": {
+        "walkers": 1,
+        "mpi": 1,
+        "omp": 1,
+        "gpu": false,
+        "gitrev": "5558682",
+        "vmc": 3.409071922302246,
+        "fn": 3.520508050918579,
+        "gens_vmc": 3000,
+        "gens_fn": 150
+    }
+}
