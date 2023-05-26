@@ -1,5 +1,28 @@
 import os
+import sys
 import json
+import math
+
+def c_filter(d, c):
+    try:
+        return d["computer"]["name"] == c
+    except:
+        pass
+    return False
+
+def s_filter(d, c):
+    try:
+        return d["softwarestack"]["name"] == c
+    except:
+        pass
+    return False
+
+def w_filter(d, c):
+    try:
+        return d["workload"] == c
+    except:
+        pass
+    return False
 
 def print_data(data):
     try:
@@ -51,7 +74,6 @@ def print_data(data):
                 pass
             line = line + f"\t{n}"
             n = "NA"
-            n = "NA"
             try:
                 n = f"{d['results']['vmc']:8.5f}"
             except:
@@ -77,13 +99,61 @@ def print_data(data):
             line = line + f"\t{n}"
             print(line)
 
-data = []
+def accumulate(data, s):
+    sortopt = { kv.split(":")[0]: kv.split(":")[1] for kv in s.split(",") }
+    _data = [*data]
 
-for d, dn, fn in os.walk("data/experiments"):
-    for f in fn:
-        if f.endswith(".json"):
-            with open(f"{d}/{f}", "r") as fi:
-                entry = json.load(fi)
-                data.append(entry)
+    value = "vmc"
 
-print_data(data)
+    if "c" in sortopt:
+        _data = [ d for d in _data if c_filter(d, sortopt["c"]) ]
+    if "s" in sortopt:
+        _data = [ d for d in _data if s_filter(d, sortopt["s"]) ]
+    if "w" in sortopt:
+        _data = [ d for d in _data if w_filter(d, sortopt["w"]) ]
+    if "v" in sortopt:
+        value = sortopt["v"]
+
+    times = [ d["results"][value] / d["results"]["walkers"] / d["results"][f"gens_{value}"] for d in _data ]
+
+    ave = sum(times) / len(times)
+    std = math.sqrt(sum([ x*x for x in times ]) - ave*ave)
+
+    return s, ave, std
+
+def print_accdata(data):
+    try:
+        import tabulate
+
+        headers = ["Accumulate", "Average", "Std"]
+        print(tabulate.tabulate(data, headers = headers))
+    except:
+        for d in data:
+            print(f"{d[0]}: {d[1]} +/- {d[2]}")
+
+if __name__ == "__main__":
+    data = []
+
+    for d, dn, fn in os.walk("data/experiments"):
+        for f in fn:
+            if f.endswith(".json"):
+                with open(f"{d}/{f}", "r") as fi:
+                    entry = json.load(fi)
+                    data.append(entry)
+
+    import argparse
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("-a", "--acc",
+                        type=str,
+                        action="append",
+                        help="Accumulate")
+
+    args = parser.parse_args()
+
+    if not args.acc:
+        print_data(data)
+        sys.exit(0)
+    else:
+        accdata = [ accumulate(data, acc) for acc in args.acc ]
+        print_accdata(accdata)
