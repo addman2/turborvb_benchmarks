@@ -6,11 +6,11 @@
 ./P-1280el-pseudo-pbc/clean
 ./CuO-26el-pseudo-open/clean
 
-tar czf H-300el-nopseudo-pbc.tar.gz H-300el-nopseudo-pbc
-tar czf H-686el-nopseudo-pbc.tar.gz H-686el-nopseudo-pbc
-tar czf H-1024el-nopseudo-pbc.tar.gz H-1024el-nopseudo-pbc
-tar czf P-1280el-pseudo-pbc.tar.gz P-1280el-pseudo-pbc
-tar czf CuO-26el-pseudo-open.tar.gz CuO-26el-pseudo-open
+tar cz  H-300el-nopseudo-pbc | split -b 20M - H-300el-nopseudo-pbc.tar.gz.
+tar cz  H-686el-nopseudo-pbc | split -b 20M - H-686el-nopseudo-pbc.tar.gz.
+tar cz  H-1024el-nopseudo-pbc | split -b 20M - H-1024el-nopseudo-pbc.tar.gz.
+tar cz  P-1280el-pseudo-pbc | split -b 20M - P-1280el-pseudo-pbc.tar.gz.
+tar cz  CuO-26el-pseudo-open | split -b 20M - CuO-26el-pseudo-open.tar.gz.
 
 rm -rf H-300el-nopseudo-pbc
 rm -rf H-686el-nopseudo-pbc

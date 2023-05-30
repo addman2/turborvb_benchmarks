@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-tar xvf CuO-26el-pseudo-open.tar.gz
-tar xvf H-300el-nopseudo-pbc.tar.gz
-tar xvf H-686el-nopseudo-pbc.tar.gz
-tar xvf H-1024el-nopseudo-pbc.tar.gz
-tar xvf P-1280el-pseudo-pbc.tar.gz
+cat CuO-26el-pseudo-open.tar.gz.* | tar xz
+cat H-300el-nopseudo-pbc.tar.gz.* | tar xz
+cat H-686el-nopseudo-pbc.tar.gz.* | tar xz
+cat H-1024el-nopseudo-pbc.tar.gz.* | tar xz
+cat P-1280el-pseudo-pbc.tar.gz.* | tar xz
