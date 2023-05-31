@@ -121,6 +121,16 @@ def accumulate(data, s):
 
     return s, ave, std
 
+def filter_data(data, s):
+    k, v = s.split(":")
+    if k == "c":
+        data = [ d for d in data if c_filter(d, v) ]
+    if k == "s":
+        data = [ d for d in data if s_filter(d, v) ]
+    if k == "w":
+        data = [ d for d in data if w_filter(d, v) ]
+    return data
+
 def print_accdata(data):
     try:
         import tabulate
@@ -149,7 +159,16 @@ if __name__ == "__main__":
                         action="append",
                         help="Accumulate")
 
+    parser.add_argument("-f", "--filter",
+                        type=str,
+                        action="append",
+                        help="Accumulate")
+
     args = parser.parse_args()
+
+    if args.filter:
+        for f in args.filter:
+            data = filter_data(data, f)
 
     if not args.acc:
         print_data(data)
