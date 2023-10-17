@@ -28,6 +28,10 @@ parser.add_argument("-e", "--executable",
                     type=str,
                     help="Executable",
                     default="turborvb-serial.x")
+parser.add_argument("-o", "--openmp",
+                    type=int,
+                    help="Number of OMP threads",
+                    default=1)
 parser.add_argument("-m", "--mpi",
                     type=str,
                     help="MPI prefix",
@@ -59,6 +63,7 @@ computer = args.computer
 softwarestack = args.softwarestack
 number_of_walkers = args.number_of_walkers
 user = args.user
+openmp = args.openmp
 
 stuff = load_stuf()
 
@@ -70,9 +75,9 @@ if not os.access(executable, os.X_OK):
     raise Exception(f"Cannot execute TurboRVB {executable}")
 
 os.makedirs("laboratory", exist_ok=True)
-os.system(f"tar xvzf Workloads/{workload}.tar.gz --directory laboratory")
+os.system(f"cat Workloads/{workload}.tar.gz.* | tar xz --directory laboratory")
 
-experiment_command = f"cd laboratory/{workload} && export NW={number_of_walkers} && export EXE={executable} && MPI_PREFIX=\"{mpi}\" ./run && ./measure > output.json"
+experiment_command = f"cd laboratory/{workload} && export OMP_NUM_THREADS={openmp} && export NW={number_of_walkers} && export EXE={executable} && MPI_PREFIX=\"{mpi}\" ./run && ./measure > output.json"
 print(f"Executing {experiment_command}")
 subprocess.run(experiment_command, shell=True)
 

@@ -24,6 +24,13 @@ def w_filter(d, c):
         pass
     return False
 
+def g_filter(d, c):
+    try:
+        return d["results"]["gitrev"] == c
+    except:
+        pass
+    return False
+
 def print_data(data):
     try:
         import tabulate
@@ -129,6 +136,8 @@ def filter_data(data, s):
         data = [ d for d in data if s_filter(d, v) ]
     if k == "w":
         data = [ d for d in data if w_filter(d, v) ]
+    if k == "g":
+        data = [ d for d in data if g_filter(d, v) ]
     return data
 
 def print_accdata(data):
